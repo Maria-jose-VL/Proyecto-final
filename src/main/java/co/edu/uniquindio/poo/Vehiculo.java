@@ -8,7 +8,6 @@ public abstract class Vehiculo {
     public int tarifaMotoHibrida;
     public int tarifacarro;
 
-    
     public Vehiculo(String placa, String modelo,Propietario propietario) {
         this.placa = placa;
         this.modelo = modelo;
