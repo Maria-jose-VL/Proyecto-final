@@ -7,6 +7,7 @@
  */
 package co.edu.uniquindio.poo;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
@@ -25,5 +26,11 @@ public class AppTest {
         LOG.info("Iniciado test shouldAnswerWithTrue");
         assertTrue(true);
         LOG.info("Finalizando test shouldAnswerWithTrue");
+    }
+    @Test
+    public void shouldAnswerWithFalse() {
+        LOG.info("Hola");
+        assertFalse(false);
+        LOG.info("Adios");
     }
 }
