@@ -31,6 +31,6 @@ public class AppTest {
     public void shouldAnswerWithFalse() {
         LOG.info("Hola");
         assertFalse(false);
-        LOG.info("Adios");
+        LOG.info("Chao");
     }
 }
