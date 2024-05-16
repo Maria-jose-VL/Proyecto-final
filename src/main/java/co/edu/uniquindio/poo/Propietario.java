@@ -2,10 +2,10 @@ package co.edu.uniquindio.poo;
 
 public class Propietario extends Persona {
 
-    public Propietario(String nombre, String apellido, String telefono, String identificacion) {
-        super(nombre, apellido, telefono, identificacion);
+    public Propietario(String nombres, String apellidos, Byte edad, String telefono, String identificacion,
+            String correo) {
+        super(nombres, apellidos, edad, telefono, identificacion, correo);
         //TODO Auto-generated constructor stub
     }
-    
-    
+  
 }
