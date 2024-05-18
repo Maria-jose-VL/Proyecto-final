@@ -7,5 +7,4 @@ public class Propietario extends Persona {
         super(nombres, apellidos, edad, telefono, identificacion, correo);
         //TODO Auto-generated constructor stub
     }
-  
 }

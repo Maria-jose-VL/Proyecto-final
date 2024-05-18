@@ -3,12 +3,15 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Registro{
+
     private final LocalDateTime fechaEntrada;
     private LocalDateTime fechaSalida;
     private final Vehiculo vehiculo;
 
     public Registro(LocalDateTime fechaEntrada, LocalDateTime fechaSalida, Vehiculo vehiculo) {
+
         assert fechaEntrada != null: "La fecha de entrada no puede ser nula";
+
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.vehiculo = vehiculo;
@@ -19,6 +22,8 @@ public class Registro{
         long horas = tiempo.toHours();
         return (int) horas ;
     }
+
+    
     public double calcularTarifa(){
         int tiempoEstacionado = calcularTiempo(fechaEntrada, fechaSalida);
         double tarifaPorHora = vehiculo.getTarifa();
@@ -33,6 +38,7 @@ public class Registro{
         }
         return tiempoEstacionado * tarifaPorHora;
     }
+
 
     public LocalDateTime getFechaEntrada() {
         return fechaEntrada;
@@ -49,5 +55,4 @@ public class Registro{
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
-    
 } 

@@ -1,11 +1,14 @@
 package co.edu.uniquindio.poo;
 
 public class Puesto {
+
     private final int posicionI;
     private final int posicionJ;
     private Estado estado;
     private Vehiculo vehiculo;
+
     public Puesto(int posicionI, int posicionJ, Estado estado) {
+        
         this.posicionI = posicionI;
         this.posicionJ = posicionJ;
         this.estado = estado;

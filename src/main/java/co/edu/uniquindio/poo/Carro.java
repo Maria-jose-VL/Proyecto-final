@@ -3,5 +3,6 @@ public class Carro extends Vehiculo {
     
     public Carro(String placa, String modelo,Propietario propietario) {
         super(placa, modelo, propietario);
+        //TODO Auto-generated constructor stub
     }
 }

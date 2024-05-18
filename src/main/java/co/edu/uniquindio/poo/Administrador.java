@@ -6,6 +6,7 @@ public class Administrador extends Persona {
             String correo) {
         super(nombres, apellidos, edad, telefono, identificacion, correo);
         //TODO Auto-generated constructor stub
+        
     }
     public void cambiarTarifa(Vehiculo vehiculo, double tarifa){
         if( vehiculo instanceof Carro){
@@ -20,6 +21,5 @@ public class Administrador extends Persona {
                 vehiculo.setTarifa(tarifa);
             }
         }
-
     }
 }

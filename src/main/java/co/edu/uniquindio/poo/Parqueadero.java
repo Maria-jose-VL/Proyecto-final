@@ -2,11 +2,13 @@ package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class Parqueadero {
+    
     public String nombre;
     private int numeroPuestos;
     private final Collection<Registro> registros;
@@ -14,14 +16,18 @@ public class Parqueadero {
     private final Collection<Vehiculo> vehiculos;
 
     public Parqueadero(String nombre, int numeroPuestos) {
+
         assert nombre != null && !nombre.isBlank() : "El nombre no puede nulo ni tampoco vacío";
         assert numeroPuestos > 0 : "El número de puestos no puede ser negativo ni tampoco cero";
+
         this.nombre = nombre;
         this.numeroPuestos = numeroPuestos;
         this.registros = new LinkedList<>();
         this.puestos = new Hashtable<>();
         this.vehiculos = new LinkedList<>();
+
         crearPuestos(numeroPuestos);
+
     }
 
     public String getNombre() {
@@ -44,6 +50,7 @@ public class Parqueadero {
         return vehiculos;
     }
 
+
     public void crearPuestos(int numeroPuestos) {
         for (int i = 0; i < numeroPuestos; i++) {
             int posicionI = (i + 1);
@@ -55,6 +62,7 @@ public class Parqueadero {
         }
     }
 
+
     private boolean verificarPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
         if (puesto != null) {
@@ -65,8 +73,9 @@ public class Parqueadero {
         return false;
     }
 
+
     public void agregarVehiculoPuesto(Vehiculo vehiculo, int posicionI, int posicionJ) {
-        assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto esta ocupado";
+        assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
         if (verificarPuesto(posicionI, posicionJ)) {
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
             puesto.setVehiculo(vehiculo);
@@ -77,6 +86,7 @@ public class Parqueadero {
             vehiculos.add(vehiculo);
         }
     }
+
 
     public void eliminarVehiculoPuesto(int posicionI, int posicionJ) {
         if (!verificarPuesto(posicionI, posicionJ)) {
@@ -93,6 +103,7 @@ public class Parqueadero {
         }
     }
 
+
     public void actualizarEstadoPuesto(int posicionI, int posicionJ, Estado estado) {
         Estado estadoDisponible = Estado.DISPONIBLE;
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
@@ -102,7 +113,8 @@ public class Parqueadero {
 
     }
 
-    public Collection<Double> generarReporteDiario(LocalDate fecha) {
+
+    public Collection<Double> generarReporteDiario (LocalDate fecha) {
         double dineroRecaudadoCarro = 0.0;
         double dineroRecaudadoMotoHibrida = 0.0;
         double dineroRecaudadoMotoClasica = 0.0;
@@ -131,6 +143,7 @@ public class Parqueadero {
         return reporteDiario;
     }
 
+
     public Propietario obtenerPropietarioPorPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
         if (puesto != null) {
@@ -140,5 +153,19 @@ public class Parqueadero {
             }
         }
         return null;
+    }
+
+
+    public double generarReporteMensual(YearMonth mes) {
+        double dineroRecaudado = 0.0;
+        int año = mes.getYear();
+        int mesBuscado = mes.getMonthValue();
+        for (Registro registro : registros) {
+            if (registro.getFechaEntrada().toLocalDate().getYear() == año
+                    && registro.getFechaEntrada().toLocalDate().getMonthValue() == mesBuscado) {
+                dineroRecaudado += registro.calcularTarifa();
+            }
+        }
+        return dineroRecaudado;
     }
 }
