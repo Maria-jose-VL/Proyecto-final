@@ -14,4 +14,12 @@ public class Moto extends Vehiculo {
         
     }
 
+    public double getVelocidadMaxima() {
+        return velocidadMaxima;
+    }
+
+    public TipoMoto getTipoMoto() {
+        return tipoMoto;
+    }
+    
 }

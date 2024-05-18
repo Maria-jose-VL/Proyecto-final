@@ -1,19 +1,19 @@
 package co.edu.uniquindio.poo;
 
 public class Puesto {
-    private final String posicionI;
-    private final String posicionJ;
+    private final int posicionI;
+    private final int posicionJ;
     private Estado estado;
     private Vehiculo vehiculo;
-    public Puesto(String posicionI, String posicionJ, Estado estado) {
+    public Puesto(int posicionI, int posicionJ, Estado estado) {
         this.posicionI = posicionI;
         this.posicionJ = posicionJ;
         this.estado = estado;
     }
-    public String getPosicionI() {
+    public int getPosicionI() {
         return posicionI;
     }
-    public String getPosicionJ() {
+    public int getPosicionJ() {
         return posicionJ;
     }
     public Estado getEstado() {
