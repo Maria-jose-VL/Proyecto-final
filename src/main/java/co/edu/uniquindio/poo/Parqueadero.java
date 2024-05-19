@@ -52,8 +52,10 @@ public class Parqueadero {
 
 
     public void crearPuestos(int numeroPuestos) {
+
         for (int i = 0; i < numeroPuestos; i++) {
             int posicionI = (i + 1);
+
             for (int j = 0; j < numeroPuestos; i++) {
                 int posicionJ = (j + 1);
                 String llave = "(" + posicionI + "," + posicionJ + ")";
@@ -65,6 +67,7 @@ public class Parqueadero {
 
     private boolean verificarPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
+
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
@@ -75,7 +78,9 @@ public class Parqueadero {
 
 
     public void agregarVehiculoPuesto(Vehiculo vehiculo, int posicionI, int posicionJ) {
+
         assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
+
         if (verificarPuesto(posicionI, posicionJ)) {
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
             puesto.setVehiculo(vehiculo);
@@ -88,18 +93,22 @@ public class Parqueadero {
     }
 
 
-    public void eliminarVehiculoPuesto(int posicionI, int posicionJ) {
+    public void eliminarVehiculoPuesto(int posicionI, int posicionJ, LocalDateTime fechaSalida) {
+
+        assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra libre";
+
         if (!verificarPuesto(posicionI, posicionJ)) {
-            LocalDateTime fechaSalida = LocalDateTime.now();
+            
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
             var vehiculoPuesto = puesto.getVehiculo();
-            puesto.setVehiculo(null);
-            actualizarEstadoPuesto(posicionI, posicionJ, Estado.DISPONIBLE);
+            
             for (Registro registro : registros) {
-                if (registro.getVehiculo().equals(vehiculoPuesto)) {
+                if (registro.getVehiculo().equals(vehiculoPuesto) && registro.getFechaSalida() == null) {
                     registro.setFechaSalida(fechaSalida);
                 }
             }
+            puesto.setVehiculo(null);
+            actualizarEstadoPuesto(posicionI, posicionJ, Estado.DISPONIBLE);
         }
     }
 
@@ -107,10 +116,10 @@ public class Parqueadero {
     public void actualizarEstadoPuesto(int posicionI, int posicionJ, Estado estado) {
         Estado estadoDisponible = Estado.DISPONIBLE;
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
+        
         if (puesto.getEstado().equals(estadoDisponible)) {
             puesto.setEstado(estado);
         }
-
     }
 
 
@@ -120,9 +129,10 @@ public class Parqueadero {
         double dineroRecaudadoMotoClasica = 0.0;
 
         for (Registro registro : registros) {
-            if (registro.getFechaEntrada().toLocalDate().isEqual(fecha)) {
+            if (registro.getFechaEntrada().toLocalDate().isEqual(fecha) && registro.getFechaSalida() != null) {
                 Vehiculo vehiculo = registro.getVehiculo();
                 double tarifa = registro.calcularTarifa();
+
                 if (vehiculo instanceof Carro) {
                     dineroRecaudadoCarro += tarifa;
                 } else if (vehiculo instanceof Moto) {
