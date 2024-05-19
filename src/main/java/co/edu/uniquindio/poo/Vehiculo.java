@@ -6,9 +6,14 @@ public abstract class Vehiculo {
     private final String modelo;
     private final Propietario Propietario;
     private double tarifa;
+     /**
+     * Cosntructor de la clase vehiculo
+     */
 
     public Vehiculo(String placa, String modelo,Propietario propietario) {
-
+    /**
+     * aserciones para poder hacer los test de la clase Vehiculo
+     */
         assert placa != null && !placa.isBlank(): "La placa no puede ser nulo ni vacío";
         assert modelo != null && !modelo.isBlank(): "El modelo no puede ser nulo ni vacío";
 
@@ -17,6 +22,9 @@ public abstract class Vehiculo {
         Propietario = propietario;
     }
 
+     /**
+     * Métodos get y set de la clase Vehiculo
+     */
     public String getPlaca() {
         return placa;
     }

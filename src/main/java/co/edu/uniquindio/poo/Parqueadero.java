@@ -15,9 +15,17 @@ public class Parqueadero {
     private final Hashtable<String, Puesto> puestos;
     private final Collection<Vehiculo> vehiculos;
 
+        /**
+     * Constructor de la clase parqueadero
+     */
+
     public Parqueadero(String nombre, int numeroPuestos) {
 
-        assert nombre != null && !nombre.isBlank() : "El nombre no puede nulo ni tampoco vacío";
+       /**
+    * aserciones para pruebas de la clase parqueadero
+    */
+
+        assert nombre != null && !nombre.isBlank() : "El nombre no puede ser nulo ni tampoco vacío";
         assert numeroPuestos > 0 : "El número de puestos no puede ser negativo ni tampoco cero";
 
         this.nombre = nombre;
@@ -29,6 +37,9 @@ public class Parqueadero {
         crearPuestos(numeroPuestos);
 
     }
+        /**
+     * Métodos get de la clase parqueadero
+     */
 
     public String getNombre() {
         return nombre;
@@ -50,7 +61,9 @@ public class Parqueadero {
         return vehiculos;
     }
 
-
+        /**
+     * Método para crear el numero de puestos uqe va a tener puestos de un parqueadero
+     */
     public void crearPuestos(int numeroPuestos) {
 
         for (int i = 0; i < numeroPuestos; i++) {
@@ -63,7 +76,9 @@ public class Parqueadero {
             }
         }
     }
-
+    /**
+     * Método para verificar si el puesto de un parqueadero está ocupado o disponible
+     */
 
     private boolean verificarPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
@@ -76,15 +91,18 @@ public class Parqueadero {
         return false;
     }
 
-
-    public void agregarVehiculoPuesto(Vehiculo vehiculo, int posicionI, int posicionJ) {
+        /**
+     * Método para agregar un vehiculo al parqueadero por puesto,
+     * solo se podrá agregar si el puesto está disponible
+     */
+    public void agregarVehiculoPorPuesto(Vehiculo vehiculo, int posicionI, int posicionJ) {
 
         assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
 
         if (verificarPuesto(posicionI, posicionJ)) {
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
             puesto.setVehiculo(vehiculo);
-            actualizarEstadoPuesto(posicionI, posicionJ, Estado.OCUPADO);
+            actualizarEstadoPorPuesto(posicionI, posicionJ, Estado.OCUPADO);
             LocalDateTime fechaEntrada = LocalDateTime.now();
             Registro registro = new Registro(fechaEntrada, null, vehiculo);
             registros.add(registro);
@@ -92,8 +110,11 @@ public class Parqueadero {
         }
     }
 
-
-    public void eliminarVehiculoPuesto(int posicionI, int posicionJ, LocalDateTime fechaSalida) {
+    /**
+     * Método para eliminar un vehiculo de un puesto del parqueadero,
+     * solo se podrá eliminar si el puesto está ocupado
+     */
+    public void eliminarVehiculoPorPuesto(int posicionI, int posicionJ, LocalDateTime fechaSalida) {
 
         assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra libre";
 
@@ -108,21 +129,25 @@ public class Parqueadero {
                 }
             }
             puesto.setVehiculo(null);
-            actualizarEstadoPuesto(posicionI, posicionJ, Estado.DISPONIBLE);
+            actualizarEstadoPorPuesto(posicionI, posicionJ, Estado.DISPONIBLE);
         }
     }
 
-
-    public void actualizarEstadoPuesto(int posicionI, int posicionJ, Estado estado) {
+        /**
+     * Método para actualizar el estado de un puesto del parqueadero
+     */
+    public void actualizarEstadoPorPuesto(int posicionI, int posicionJ, Estado estado) {
         Estado estadoDisponible = Estado.DISPONIBLE;
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-        
+
         if (puesto.getEstado().equals(estadoDisponible)) {
             puesto.setEstado(estado);
         }
     }
 
-
+        /**
+     * Método para generar un reporte del dinero que se recauda diariamente por vehiculo en el parqueadero
+     */
     public Collection<Double> generarReporteDiario (LocalDate fecha) {
         double dineroRecaudadoCarro = 0.0;
         double dineroRecaudadoMotoHibrida = 0.0;
@@ -152,7 +177,10 @@ public class Parqueadero {
 
         return reporteDiario;
     }
-
+        /**
+     * Método para obtener la información de un propietario por medio del puesto que ocupa un vehiculo
+     * solo se podrá obtener la información cuando el puesto esté ocupado
+     */
 
     public Propietario obtenerPropietarioPorPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
@@ -165,7 +193,9 @@ public class Parqueadero {
         return null;
     }
 
-
+    /**
+     * Método para generar un reporte del dinero recaudado mensualmente
+     */
     public double generarReporteMensual(YearMonth mes) {
         double dineroRecaudado = 0.0;
         int año = mes.getYear();

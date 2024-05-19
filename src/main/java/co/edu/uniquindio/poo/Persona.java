@@ -9,7 +9,15 @@ public abstract class Persona {
     private final String identificacion;
     private final String correo;
 
+        /**
+     * Constructor de la clase Persona
+     */
+
     public Persona(String nombres, String apellidos, Byte edad, String telefono, String identificacion, String correo) {
+
+    /**
+     * Asersiones para poder hacer los test de la clase Persona
+     */
 
         assert nombres != null && !nombres.isBlank(): "Los nombres no pueden ser nulos ni vacíos";
         assert apellidos != null && !apellidos.isBlank(): "Los apellidos no pueden ser nulos ni vacíos";
@@ -26,6 +34,10 @@ public abstract class Persona {
         this.correo = correo;
   
     }
+
+            /**
+     * Métodos get de la clase persona
+     */
 
     public String getNombres() {
         return nombres;

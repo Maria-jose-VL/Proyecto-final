@@ -6,12 +6,21 @@ public class Puesto {
     private final int posicionJ;
     private Estado estado;
     private Vehiculo vehiculo;
+     /**
+     * Constructor de la clase Puesto
+     */
+
 
     public Puesto(int posicionI, int posicionJ, Estado estado) {
         
         this.posicionI = posicionI;
         this.posicionJ = posicionJ;
         this.estado = estado;
+
+    /**
+     * Métodos get y set de la clase Puesto
+     */
+
     }
     public int getPosicionI() {
         return posicionI;
@@ -31,6 +40,4 @@ public class Puesto {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-
-
 }

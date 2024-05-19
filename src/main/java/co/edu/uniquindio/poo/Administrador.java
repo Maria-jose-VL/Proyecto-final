@@ -8,6 +8,9 @@ public class Administrador extends Persona {
         //TODO Auto-generated constructor stub
         
     }
+        /**
+     * Método para cambiar el precio de la tarifa de cada vehiculo
+     */
     public void cambiarTarifa(Vehiculo vehiculo, double tarifa){
         if( vehiculo instanceof Carro){
             vehiculo.setTarifa(tarifa);
