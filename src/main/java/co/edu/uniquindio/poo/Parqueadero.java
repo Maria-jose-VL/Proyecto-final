@@ -83,7 +83,7 @@ public class Parqueadero {
     private boolean verificarPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
 
-        if (puesto != null) {
+        if (puesto != null) { 
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
             }
