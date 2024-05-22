@@ -4,7 +4,7 @@ public abstract class Persona {
     
     private final String nombres;
     private final String apellidos;
-    private final byte edad; 
+    private final int edad; 
     private final String telefono;
     private final String identificacion;
     private final String correo;
@@ -13,7 +13,7 @@ public abstract class Persona {
      * Constructor de la clase Persona
      */
 
-    public Persona(String nombres, String apellidos, Byte edad, String telefono, String identificacion, String correo) {
+    public Persona(String nombres, String apellidos, int edad, String telefono, String identificacion, String correo) {
 
     /**
      * Asersiones para poder hacer los test de la clase Persona
@@ -47,7 +47,7 @@ public abstract class Persona {
         return apellidos;
     }
 
-    public byte getEdad() {
+    public int getEdad() {
         return edad;
     }
 
