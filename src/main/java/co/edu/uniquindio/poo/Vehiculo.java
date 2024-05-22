@@ -19,7 +19,7 @@ public abstract class Vehiculo {
 
         this.placa = placa;
         this.modelo = modelo;
-        Propietario = propietario;
+        this.Propietario = propietario;
     }
 
      /**

@@ -8,22 +8,22 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class Parqueadero {
-    
+
     public String nombre;
     private int numeroPuestos;
     private final Collection<Registro> registros;
     private final Hashtable<String, Puesto> puestos;
     private final Collection<Vehiculo> vehiculos;
 
-        /**
+    /**
      * Constructor de la clase parqueadero
      */
 
     public Parqueadero(String nombre, int numeroPuestos) {
 
-       /**
-    * aserciones para pruebas de la clase parqueadero
-    */
+        /**
+         * aserciones para pruebas de la clase parqueadero
+         */
 
         assert nombre != null && !nombre.isBlank() : "El nombre no puede ser nulo ni tampoco vacío";
         assert numeroPuestos > 0 : "El número de puestos no puede ser negativo ni tampoco cero";
@@ -37,7 +37,8 @@ public class Parqueadero {
         crearPuestos(numeroPuestos);
 
     }
-        /**
+
+    /**
      * Métodos get de la clase parqueadero
      */
 
@@ -61,8 +62,9 @@ public class Parqueadero {
         return vehiculos;
     }
 
-        /**
-     * Método para crear el numero de puestos uqe va a tener puestos de un parqueadero
+    /**
+     * Método para crear el numero de puestos uqe va a tener puestos de un
+     * parqueadero
      */
     public void crearPuestos(int numeroPuestos) {
 
@@ -76,13 +78,15 @@ public class Parqueadero {
             }
         }
     }
+
     /**
-     * Método para verificar si el puesto de un parqueadero está ocupado o disponible
+     * Método para verificar si el puesto de un parqueadero está ocupado o
+     * disponible
      */
 
     private boolean verificarPuesto(int posicionI, int posicionJ) {
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-
+        assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
@@ -91,7 +95,7 @@ public class Parqueadero {
         return false;
     }
 
-        /**
+    /**
      * Método para agregar un vehiculo al parqueadero por puesto,
      * solo se podrá agregar si el puesto está disponible
      */
@@ -107,6 +111,7 @@ public class Parqueadero {
             Registro registro = new Registro(fechaEntrada, null, vehiculo);
             registros.add(registro);
             vehiculos.add(vehiculo);
+
         }
     }
 
@@ -119,10 +124,10 @@ public class Parqueadero {
         assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra libre";
 
         if (!verificarPuesto(posicionI, posicionJ)) {
-            
+
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
             var vehiculoPuesto = puesto.getVehiculo();
-            
+
             for (Registro registro : registros) {
                 if (registro.getVehiculo().equals(vehiculoPuesto) && registro.getFechaSalida() == null) {
                     registro.setFechaSalida(fechaSalida);
@@ -133,7 +138,7 @@ public class Parqueadero {
         }
     }
 
-        /**
+    /**
      * Método para actualizar el estado de un puesto del parqueadero
      */
     public void actualizarEstadoPorPuesto(int posicionI, int posicionJ, Estado estado) {
@@ -145,10 +150,11 @@ public class Parqueadero {
         }
     }
 
-        /**
-     * Método para generar un reporte del dinero que se recauda diariamente por vehiculo en el parqueadero
+    /**
+     * Método para generar un reporte del dinero que se recauda diariamente por
+     * vehiculo en el parqueadero
      */
-    public Collection<Double> generarReporteDiario (LocalDate fecha) {
+    public Collection<Double> generarReporteDiario(LocalDate fecha) {
         double dineroRecaudadoCarro = 0.0;
         double dineroRecaudadoMotoHibrida = 0.0;
         double dineroRecaudadoMotoClasica = 0.0;
@@ -177,8 +183,10 @@ public class Parqueadero {
 
         return reporteDiario;
     }
-        /**
-     * Método para obtener la información de un propietario por medio del puesto que ocupa un vehiculo
+
+    /**
+     * Método para obtener la información de un propietario por medio del puesto que
+     * ocupa un vehiculo
      * solo se podrá obtener la información cuando el puesto esté ocupado
      */
 
