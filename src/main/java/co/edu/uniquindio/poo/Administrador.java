@@ -12,17 +12,6 @@ public class Administrador extends Persona {
      * Método para cambiar el precio de la tarifa de cada vehiculo
      */
     public void cambiarTarifa(Vehiculo vehiculo, double tarifa){
-        if( vehiculo instanceof Carro){
-            vehiculo.setTarifa(tarifa);
-        }
-        else if(vehiculo instanceof Moto){
-            Moto moto = (Moto) vehiculo;
-            if(moto.getTipoMoto()==TipoMoto.MOTO_HIBRIDA){
-                vehiculo.setTarifa(tarifa);
-            }
-            else {
-                vehiculo.setTarifa(tarifa);
-            }
-        }
+        vehiculo.setTarifa(tarifa);
     }
 }

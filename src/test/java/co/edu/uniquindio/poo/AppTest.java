@@ -33,4 +33,14 @@ public class AppTest {
         assertFalse(false);
         LOG.info("Chao");
     }
+   /**  @Test
+    public void testVerificarDisponibilidad() {
+        Parqueadero parqueadero = new Parqueadero("p", 10);
+        Propietario propietario = new Propietario("Juan", "Perez", 20, "32345422", "1014393391","juan@uq.com" );
+        Vehiculo vehiculo = new Vehiculo("gfu-411", "2023", propietario);
+        parqueadero.agregarVehiculoPorPuesto(vehiculo, 0, 0);
+        Vehiculo vehiculo2 = new Vehiculo("gfu-411", "2023", propietario);
+        assertThrows(Throwable.class, ()-> parqueadero.agregarVehiculoPorPuesto(new Vehiculo(null, null, propietario),0, 0)); // El puesto (0,0) debería estar disponible inicialmente
+    }**/
 }
+
