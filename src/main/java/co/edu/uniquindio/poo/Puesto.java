@@ -6,6 +6,7 @@ public class Puesto {
     private final int posicionJ;
     private Estado estado;
     private Vehiculo vehiculo;
+    private Propietario propietario;
      /**
      * Constructor de la clase Puesto
      */
@@ -39,5 +40,8 @@ public class Puesto {
     }
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
+    }
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
     }
 }

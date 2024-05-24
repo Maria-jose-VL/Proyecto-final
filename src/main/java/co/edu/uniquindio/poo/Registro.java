@@ -7,6 +7,7 @@ public class Registro{
     private final LocalDateTime fechaEntrada;
     private LocalDateTime fechaSalida;
     private final Vehiculo vehiculo;
+    
 
      /**
      * Constructor de la clase Registro
@@ -23,9 +24,12 @@ public class Registro{
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.vehiculo = vehiculo;
+        
     }
 
-     /**
+    
+
+    /**
      * Método para clacular el tiempo que estuvo estacionado un vehiculo
      */
 
@@ -42,15 +46,6 @@ public class Registro{
     public double calcularTarifa(){
         int tiempoEstacionado = calcularTiempo(fechaEntrada, fechaSalida);
         double tarifaPorHora = vehiculo.getTarifa();
-        if (vehiculo instanceof Carro){
-            vehiculo.getTarifa();
-        }
-        else if(vehiculo instanceof Moto){
-            Moto moto = (Moto) vehiculo;
-            if (moto.getTipoMoto()== TipoMoto.MOTO_HIBRIDA){
-                moto.getTarifa();
-            }
-        }
         return tiempoEstacionado * tarifaPorHora;
     }
 
@@ -72,4 +67,5 @@ public class Registro{
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
+    
 } 

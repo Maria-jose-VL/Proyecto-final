@@ -14,6 +14,7 @@ public class Parqueadero {
     private final Collection<Registro> registros;
     private final Hashtable<String, Puesto> puestos;
     private final Collection<Vehiculo> vehiculos;
+    private final Collection<Propietario> propietarios;
 
     /**
      * Constructor de la clase parqueadero
@@ -33,6 +34,7 @@ public class Parqueadero {
         this.registros = new LinkedList<>();
         this.puestos = new Hashtable<>();
         this.vehiculos = new LinkedList<>();
+        this.propietarios = new LinkedList<>();
 
         crearPuestos(numeroPuestos);
 
@@ -71,7 +73,7 @@ public class Parqueadero {
         for (int i = 0; i < numeroPuestos; i++) {
             int posicionI = (i + 1);
 
-            for (int j = 0; j < numeroPuestos; i++) {
+            for (int j = 0; j < numeroPuestos; j++) {
                 int posicionJ = (j + 1);
                 String llave = "(" + posicionI + "," + posicionJ + ")";
                 puestos.put(llave, new Puesto(posicionI, posicionJ, Estado.DISPONIBLE));
@@ -84,10 +86,11 @@ public class Parqueadero {
      * disponible
      */
 
-    private boolean verificarPuesto(int posicionI, int posicionJ) {
+    public boolean verificarPuesto(int posicionI, int posicionJ) {
+    
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-
-        if (puesto != null) { 
+        assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
+        if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
             }
@@ -99,9 +102,17 @@ public class Parqueadero {
      * Método para agregar un vehiculo al parqueadero por puesto,
      * solo se podrá agregar si el puesto está disponible
      */
+    public void agregarVehiculo(Vehiculo vehiculo){
+
+        vehiculos.add(vehiculo);
+
+    }
+   
+    
     public void agregarVehiculoPorPuesto(Vehiculo vehiculo, int posicionI, int posicionJ) {
 
         assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
+        
 
         if (verificarPuesto(posicionI, posicionJ)) {
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
@@ -195,12 +206,12 @@ public class Parqueadero {
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.OCUPADO)) {
                 Vehiculo vehiculo = puesto.getVehiculo();
-                return vehiculo.getPropietario();
+            return vehiculo.getPropietario();
             }
         }
         return null;
     }
-
+    
     /**
      * Método para generar un reporte del dinero recaudado mensualmente
      */
