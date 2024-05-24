@@ -121,7 +121,7 @@ public class Parqueadero {
      */
     public void eliminarVehiculoPorPuesto(int posicionI, int posicionJ, LocalDateTime fechaSalida) {
 
-        assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra libre";
+        assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra Disponible";
 
         if (!verificarPuesto(posicionI, posicionJ)) {
 
