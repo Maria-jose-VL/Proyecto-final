@@ -14,7 +14,7 @@ public class Parqueadero {
     private final Collection<Registro> registros;
     private final Hashtable<String, Puesto> puestos;
     private final Collection<Vehiculo> vehiculos;
-    private final Collection<Propietario> propietarios;
+    //private final Collection<Propietario> propietarios;
 
     /**
      * Constructor de la clase parqueadero
@@ -34,7 +34,7 @@ public class Parqueadero {
         this.registros = new LinkedList<>();
         this.puestos = new Hashtable<>();
         this.vehiculos = new LinkedList<>();
-        this.propietarios = new LinkedList<>();
+        //this.propietarios = new LinkedList<>();
 
         crearPuestos(numeroPuestos);
 
@@ -89,7 +89,7 @@ public class Parqueadero {
     public boolean verificarPuesto(int posicionI, int posicionJ) {
     
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-        assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
+        //assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
@@ -103,9 +103,16 @@ public class Parqueadero {
      * solo se podrá agregar si el puesto está disponible
      */
     public void agregarVehiculo(Vehiculo vehiculo){
-
+        assert !verificarVehiculo(vehiculo.getPlaca()) : "El vehiculo ya se encuentra registrado";
         vehiculos.add(vehiculo);
+    }
 
+    private boolean verificarVehiculo (String placa) {
+        for (Vehiculo vehiculo : vehiculos){
+            if (vehiculo.getPlaca().equals(placa));
+                return true;
+        }
+        return false;
     }
    
     
@@ -121,8 +128,7 @@ public class Parqueadero {
             LocalDateTime fechaEntrada = LocalDateTime.now();
             Registro registro = new Registro(fechaEntrada, null, vehiculo);
             registros.add(registro);
-            vehiculos.add(vehiculo);
-
+            agregarVehiculo(vehiculo);
         }
     }
 
@@ -135,12 +141,10 @@ public class Parqueadero {
         assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra Disponible";
 
         if (!verificarPuesto(posicionI, posicionJ)) {
-
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-            var vehiculoPuesto = puesto.getVehiculo();
-
-            for (Registro registro : registros) {
-                if (registro.getVehiculo().equals(vehiculoPuesto) && registro.getFechaSalida() == null) {
+            var vehiculo = puesto.getVehiculo();
+            for (Registro registro : registros){
+                if(registro.getVehiculo().equals(vehiculo) && registro.getFechaSalida() == null){
                     registro.setFechaSalida(fechaSalida);
                 }
             }

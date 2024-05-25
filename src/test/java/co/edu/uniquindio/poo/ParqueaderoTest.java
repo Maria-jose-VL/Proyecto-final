@@ -17,26 +17,24 @@ import co.edu.uniquindio.poo.parqueadero.Vehiculo;*/
 
 public class ParqueaderoTest {
 
-    private Parqueadero parqueadero;
-
     @Test
-    public void testAddVehiculo() {
+    public void agregarVehiculoPorPuesto() {
         Parqueadero parqueadero = new Parqueadero("parqueadero", 100);
         Propietario propietario = new Propietario("Juan", "Rod", 21, "123141", "124121"," jua@uq.com" );
         Carro carro = new Carro("ABC123","2020" , propietario);
         parqueadero.agregarVehiculoPorPuesto(carro, 1, 1);
-        assertFalse(parqueadero.verificarPuesto(1, 1));
-        
+        assertEquals(false, parqueadero.verificarPuesto(1, 1));  
     }
 
     @Test
-    public void testRemoveVehiculo() {
+    public void eliminarVehiculoPorPuesto() {
         Parqueadero parqueadero = new Parqueadero("parqueadero", 100);
         Propietario propietario = new Propietario("Juan", "Rod", 21, "123141", "124121"," jua@uq.com" );
         Carro carro = new Carro("ABC123","2020" , propietario);
         parqueadero.agregarVehiculoPorPuesto(carro, 1, 1);
-        parqueadero.eliminarVehiculoPorPuesto(1, 1, LocalDateTime.now());
-        assertTrue(parqueadero.verificarPuesto(1, 1));
+        assertEquals(false, parqueadero.verificarPuesto(1, 1));
+        parqueadero.eliminarVehiculoPorPuesto(1, 1, LocalDateTime.now().plusHours(1));
+       
     }
 
     @Test
@@ -63,5 +61,6 @@ public class ParqueaderoTest {
         parqueadero.agregarVehiculoPorPuesto(carro, 1, 1);
         assertEquals(1, parqueadero.getVehiculos().size());
         assertTrue(parqueadero.getVehiculos().contains(carro));
+
     }
 }
