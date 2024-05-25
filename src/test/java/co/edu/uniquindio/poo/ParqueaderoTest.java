@@ -38,7 +38,7 @@ public class ParqueaderoTest {
     }
 
     @Test
-    public void testAddVehiculoInvalidPuesto() {
+    public void agregarVehiculoInvalidoPuesto() {
     Parqueadero parqueadero = new Parqueadero("parqueadero", 10);
     Propietario propietario = new Propietario("Juan", "Rod", 21, "123141", "124121"," jua@uq.com" );
     Carro carro = new Carro("ABC123","2020" , propietario);
@@ -46,7 +46,7 @@ public class ParqueaderoTest {
     }
 
     @Test
-    public void testRemoveVehiculoInvalidPuesto() {
+    public void eliminarVehiculoInvalidoPuesto() {
         Parqueadero parqueadero = new Parqueadero("parqueadero", 10);
         Propietario propietario = new Propietario("Juan", "Rod", 21, "123141", "124121"," jua@uq.com" );
         Carro carro = new Carro("ABC123","2020" , propietario);

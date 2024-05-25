@@ -14,7 +14,6 @@ public class Parqueadero {
     private final Collection<Registro> registros;
     private final Hashtable<String, Puesto> puestos;
     private final Collection<Vehiculo> vehiculos;
-    //private final Collection<Propietario> propietarios;
 
     /**
      * Constructor de la clase parqueadero
@@ -89,7 +88,6 @@ public class Parqueadero {
     public boolean verificarPuesto(int posicionI, int posicionJ) {
     
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-        //assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
