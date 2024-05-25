@@ -86,7 +86,11 @@ public class Parqueadero {
      */
 
     public boolean verificarPuesto(int posicionI, int posicionJ) {
+<<<<<<< HEAD
     
+=======
+        //assert verificarPuesto(posicionI, posicionJ) == true : "Error, el puesto está ocupado";
+>>>>>>> 6f4c59ea168db35eeb4014e96f13950c59bb2a97
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {

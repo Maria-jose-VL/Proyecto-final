@@ -57,7 +57,8 @@ public class ParqueaderoTest {
     @Test
     public void testGetVehiculos() {
         Parqueadero parqueadero = new Parqueadero("parqueadero", 100);
-        Carro carro = new Carro(null, null, null);
+        Propietario propietario = new Propietario("Juan", "Rod", 21, "123141", "124121"," jua@uq.com" );
+        Carro carro = new Carro("ABC123","2020" , propietario);
         parqueadero.agregarVehiculoPorPuesto(carro, 1, 1);
         assertEquals(1, parqueadero.getVehiculos().size());
         assertTrue(parqueadero.getVehiculos().contains(carro));
