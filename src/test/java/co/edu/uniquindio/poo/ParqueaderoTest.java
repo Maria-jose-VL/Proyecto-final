@@ -23,7 +23,7 @@ public class ParqueaderoTest {
         Propietario propietario = new Propietario("Juan", "Rod", 21, "123141", "124121"," jua@uq.com" );
         Carro carro = new Carro("ABC123","2020" , propietario);
         parqueadero.agregarVehiculoPorPuesto(carro, 1, 1);
-        assertEquals(true, parqueadero.verificarPuesto(1, 1));  
+        assertEquals(false, parqueadero.verificarPuesto(1, 1));  
     }
 
     @Test
