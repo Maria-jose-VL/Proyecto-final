@@ -155,10 +155,10 @@ public class Parqueadero {
      * Método para actualizar el estado de un puesto del parqueadero
      */
     public void actualizarEstadoPorPuesto(int posicionI, int posicionJ, Estado estado) {
-        Estado estadoDisponible = Estado.DISPONIBLE;
-        Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
+        String key = "(" + posicionI + "," + posicionJ + ")";
+        Puesto puesto = puestos.get(key);
 
-        if (puesto.getEstado().equals(estadoDisponible)) {
+        if (puesto != null && puesto.getEstado().equals(Estado.DISPONIBLE)) {
             puesto.setEstado(estado);
         }
     }

@@ -1,7 +1,7 @@
 package co.edu.uniquindio.poo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import co.edu.uniquindio.poo.parqueadero.Moto;
 import co.edu.uniquindio.poo.parqueadero.Moto.TipoMoto;
 import co.edu.uniquindio.poo.parqueadero.Parqueadero;
-import co.edu.uniquindio.poo.parqueadero.Puesto;
+import co.edu.uniquindio.poo.parqueadero.Puesto; 
 import co.edu.uniquindio.poo.parqueadero.Registro;
 import co.edu.uniquindio.poo.parqueadero.Vehiculo;*/
 
