@@ -13,6 +13,8 @@ public class Main {
         String nombre = scanner.nextLine();
         System.out.print("Ingrese el número de puestos: ");
         int numeroPuestos = scanner.nextInt();
+        System.out.print("Asignar tarifa del carro");
+       // int 
         scanner.nextLine(); // Consumir la nueva línea
 
         Parqueadero parqueadero = new Parqueadero(nombre, numeroPuestos);
