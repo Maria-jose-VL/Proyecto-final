@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -14,7 +15,6 @@ public class Parqueadero {
     private final Collection<Registro> registros;
     private final Hashtable<String, Puesto> puestos;
     private final Collection<Vehiculo> vehiculos;
-
     /**
      * Constructor de la clase parqueadero
      */
@@ -33,7 +33,6 @@ public class Parqueadero {
         this.registros = new LinkedList<>();
         this.puestos = new Hashtable<>();
         this.vehiculos = new LinkedList<>();
-        //this.propietarios = new LinkedList<>();
 
         crearPuestos(numeroPuestos);
 
@@ -85,9 +84,8 @@ public class Parqueadero {
      * disponible
      */
 
-    public boolean verificarPuesto(int posicionI, int posicionJ) {
-        
-        Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
+     public boolean verificarPuesto(int posicionI, int posicionJ){
+        var puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.DISPONIBLE)) {
                 return true;
@@ -101,16 +99,9 @@ public class Parqueadero {
      * solo se podrá agregar si el puesto está disponible
      */
     public void agregarVehiculo(Vehiculo vehiculo){
-        assert !verificarVehiculo(vehiculo.getPlaca()) : "El vehiculo ya se encuentra registrado";
-        vehiculos.add(vehiculo);
-    }
 
-    private boolean verificarVehiculo (String placa) {
-        for (Vehiculo vehiculo : vehiculos){
-            if (vehiculo.getPlaca().equals(placa));
-                return true;
-        }
-        return false;
+        vehiculos.add(vehiculo);
+
     }
    
     
@@ -126,7 +117,8 @@ public class Parqueadero {
             LocalDateTime fechaEntrada = LocalDateTime.now();
             Registro registro = new Registro(fechaEntrada, null, vehiculo);
             registros.add(registro);
-            agregarVehiculo(vehiculo);
+            vehiculos.add(vehiculo);
+
         }
     }
 
@@ -139,10 +131,12 @@ public class Parqueadero {
         assert verificarPuesto(posicionI, posicionJ) == false : "Error. El puesto se encuentra Disponible";
 
         if (!verificarPuesto(posicionI, posicionJ)) {
+
             Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
-            var vehiculo = puesto.getVehiculo();
-            for (Registro registro : registros){
-                if(registro.getVehiculo().equals(vehiculo) && registro.getFechaSalida() == null){
+            var vehiculoPuesto = puesto.getVehiculo();
+
+            for (Registro registro : registros) {
+                if (registro.getVehiculo().equals(vehiculoPuesto) && registro.getFechaSalida() == null) {
                     registro.setFechaSalida(fechaSalida);
                 }
             }
@@ -155,10 +149,10 @@ public class Parqueadero {
      * Método para actualizar el estado de un puesto del parqueadero
      */
     public void actualizarEstadoPorPuesto(int posicionI, int posicionJ, Estado estado) {
-        String key = "(" + posicionI + "," + posicionJ + ")";
-        Puesto puesto = puestos.get(key);
+        Estado estadoDisponible = Estado.DISPONIBLE;
+        Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
 
-        if (puesto != null && puesto.getEstado().equals(Estado.DISPONIBLE)) {
+        if (puesto.getEstado().equals(estadoDisponible)) {
             puesto.setEstado(estado);
         }
     }
@@ -204,6 +198,7 @@ public class Parqueadero {
      */
 
     public Propietario obtenerPropietarioPorPuesto(int posicionI, int posicionJ) {
+        assert verificarPuesto(posicionI, posicionJ)==false: "El puesto está vacío";
         Puesto puesto = puestos.get("(" + posicionI + "," + posicionJ + ")");
         if (puesto != null) {
             if (puesto.getEstado().equals(Estado.OCUPADO)) {
